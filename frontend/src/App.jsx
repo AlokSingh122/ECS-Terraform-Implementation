@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 
 const API_BASE_URL = (
@@ -7,7 +7,25 @@ const API_BASE_URL = (
 
 function App() {
 
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState("Loading backend response...");
+
+  useEffect(() => {
+    const fetchBackendMessage = async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/`);
+        if (!response.ok) {
+          throw new Error(`Backend returned HTTP ${response.status}`);
+        }
+
+        const data = await response.json();
+        setMessage(data.message);
+      } catch (error) {
+        setMessage(`Backend connection failed: ${error.message}`);
+      }
+    };
+
+    fetchBackendMessage();
+  }, []);
 
   const saveData = async () => {
 
@@ -56,10 +74,10 @@ function App() {
 
       <div className="card">
 
-        <h1>Docker Volume Demo</h1>
+        <h1>Today's target is completed</h1>
 
         <p>
-          React + Flask + Docker Compose
+          React frontend + Flask backend
         </p>
 
         <button onClick={saveData}>

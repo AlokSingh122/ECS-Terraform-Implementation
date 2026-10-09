@@ -3,10 +3,13 @@ __pycache__/
 *.py[cod]
 .venv/
 venv/
+.pytest_cache/
+.mypy_cache/
 
 # Node
 node_modules/
 dist/
+coverage/
 
 # Local configuration and data
 .env
@@ -14,6 +17,21 @@ dist/
 !.env.example
 *.log
 data/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+tfplan
+crash.log
+crash.*.log
+*.tfvars
+!*.tfvars.example
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
 
 # Editor and OS files
 .vscode/

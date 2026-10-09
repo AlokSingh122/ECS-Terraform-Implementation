@@ -19,7 +19,7 @@ os.makedirs(DATA_DIR, exist_ok=True)
 @app.route("/")
 def home():
     return jsonify({
-        "message": "Hello from Flask Backend!"
+        "message": "Yes, today's target is completed. The Flask backend is responding."
     })
 
 
